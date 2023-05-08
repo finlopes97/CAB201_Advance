@@ -2,11 +2,19 @@ namespace CAB201_Advance;
 
 public class Square
 {
-    private char occupadoPor;
-    
-    public char OccupadoPor
+    protected int[] currentPosition;
+
+    public char OccupadoPor { get; set; }
+
+    public int[] CurrentPosition
     {
-        get => occupadoPor;
-        set => occupadoPor = value;
+        get => currentPosition;
+        set
+        {
+            int x = value[0];
+            int y = value[1];
+            CurrentPosition[0] = x;
+            CurrentPosition[1] = y;
+        }
     }
 }
