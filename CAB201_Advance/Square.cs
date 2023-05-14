@@ -1,20 +1,16 @@
 namespace CAB201_Advance;
 
-public class Square
+public abstract class Square
 {
-    protected int[] currentPosition;
+    private Piece piece;
 
-    public char OccupadoPor { get; set; }
-
-    public int[] CurrentPosition
+    public Square()
     {
-        get => currentPosition;
-        set
-        {
-            int x = value[0];
-            int y = value[1];
-            CurrentPosition[0] = x;
-            CurrentPosition[1] = y;
-        }
+        piece = null;
+    }
+
+    public void SetSquare(char squareValue)
+    {
+        return;
     }
 }
