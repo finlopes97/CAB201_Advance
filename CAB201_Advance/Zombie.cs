@@ -29,4 +29,19 @@ public class Zombie : Piece
     {
         
     }
+
+    public void Capture()
+    {
+        
+    }
+
+    public void Leap()
+    {
+        
+    }
+
+    public bool IsMoveLegal()
+    {
+        return true;
+    }
 }

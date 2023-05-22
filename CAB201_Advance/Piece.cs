@@ -2,7 +2,7 @@ namespace CAB201_Advance;
 
 public interface Piece
 {
-    protected virtual void Move() { } 
-    protected virtual void Capture() { }
-    protected virtual bool IsLegalMove() { return true; }
+    protected void Move() { } 
+    protected void Capture() { }
+    protected bool IsMoveLegal() { return true; }
 }

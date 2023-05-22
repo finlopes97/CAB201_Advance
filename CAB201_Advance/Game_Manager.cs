@@ -29,7 +29,7 @@ public class Game_Manager
 
     private string _pathToReadIn;
 
-    public string PathToReadIn
+    private string PathToReadIn
     {
         get => _pathToReadIn;
         set
@@ -73,8 +73,8 @@ public class Game_Manager
     /// with the appropriate information so that it can be used to define the correct piece later on.
     /// </summary>
     private readonly char[] validCharacters = "ZBMJSDCGzbmjsdcg.#".ToCharArray();
-    private static int ROWS = 9;
-    private static int COLS = 9;
+    private const int ROWS = 9;
+    private const int COLS = 9;
     private Square[,] board = new Square[ROWS, COLS];
 
     public void SetupBoard()
