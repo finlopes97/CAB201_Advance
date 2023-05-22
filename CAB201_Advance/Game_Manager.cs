@@ -127,4 +127,18 @@ public class Game_Manager
             Console.WriteLine();
         }
     }
+
+    public void Play()
+    {
+        for (int row = 0; row < ROWS; row++)
+        {
+            for (int col = 0; col < COLS; col++)
+            {
+                // Implement later, use multi-threading to read every board position and hold onto a list of potential moves
+                // for each piece. Use logic to determine the best move and then write to the output file. For instance,
+                // if the current Side is black, and the method finds a white Dragon that can put the black General in check in the 
+                // next move, then move the black General to safety.
+            }
+        }
+    }
 }
