@@ -37,19 +37,19 @@ public class Square
             case 'z' or 'Z':
                 return new Zombie(side);
             case 'b' or 'B':
-                return new Builder();
+                return new Builder(side);
             case 'j' or 'J':
-                return new Jester();
+                return new Jester(side);
             case 'm' or 'M':
-                return new Miner();
+                return new Miner(side);
             case 's' or 'S':
-                return new Sentinel();
+                return new Sentinel(side);
             case 'c' or 'C':
-                return new Catapult();
+                return new Catapult(side);
             case 'd' or 'D':
-                return new Dragon();
+                return new Dragon(side);
             case 'g' or 'G':
-                return new General();
+                return new General(side);
             default:
                 throw new ApplicationException(
                     $"Error 7: Encountered invalid symbol {Symbol} when creating a new piece on " +

@@ -24,4 +24,9 @@ public class Zombie : Piece
             { 2 * Direction, -2 } // Forward 2 squares, left 2 square
         };
     }
+
+    public void Move()
+    {
+        
+    }
 }
