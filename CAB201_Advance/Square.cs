@@ -1,4 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
 
 namespace CAB201_Advance;
 
@@ -34,11 +33,23 @@ public class Square
         {
             case '.' or '#':
                 // Implement new function to handle non-piece squares '.' and '#'.
+                return null;
             case 'z' or 'Z':
                 return new Zombie();
             case 'b' or 'B':
                 return new Builder();
-            
+            case 'j' or 'J':
+                return new Jester();
+            case 'm' or 'M':
+                return new Miner();
+            case 's' or 'S':
+                return new Sentinel();
+            case 'c' or 'C':
+                return new Catapult();
+            case 'd' or 'D':
+                return new Dragon();
+            case 'g' or 'G':
+                return new General();
             default:
                 throw new ApplicationException(
                     $"Error 7: Encountered invalid symbol {Symbol} when creating a new piece on " +

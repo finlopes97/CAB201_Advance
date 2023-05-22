@@ -1,4 +1,4 @@
-namespace CAB201_Advance.UML;
+namespace CAB201_Advance;
 
 public class Miner : Piece
 {
