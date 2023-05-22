@@ -1,4 +1,3 @@
-
 namespace CAB201_Advance;
 
 public class Square
@@ -29,13 +28,14 @@ public class Square
 
     private Piece PieceFactory()
     {
+        string side = char.IsUpper(Symbol) ? side = "white" : side = "black";
         switch (Symbol)
         {
             case '.' or '#':
                 // Implement new function to handle non-piece squares '.' and '#'.
                 return null;
             case 'z' or 'Z':
-                return new Zombie();
+                return new Zombie(side);
             case 'b' or 'B':
                 return new Builder();
             case 'j' or 'J':

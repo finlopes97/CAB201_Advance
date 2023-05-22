@@ -1,9 +1,8 @@
 namespace CAB201_Advance;
 
-public abstract class Piece
+public interface Piece
 {
-    public Piece()
-    {
-        return;
-    }
+    protected virtual void Move() { } 
+    protected virtual void Capture() { }
+    protected virtual bool IsLegalMove() { return true; }
 }
