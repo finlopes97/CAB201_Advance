@@ -43,3 +43,8 @@ $"The character {line[col]} was found in line {row + 1} and is an invalid charac
 This error is thrown when the program receives an invalid character as an input. Valid characters are Z, B, M, J, S, D, 
 C, G, z, b, m, j, s, d, c, g, . (period) and # (hash). If a character other than those listed then it will halt. Steps 
 to rectify are to open the file specified in the error and remove any invalid characters, replacing them with valid ones.
+
+#### Error 7
+```csharp
+$
+```

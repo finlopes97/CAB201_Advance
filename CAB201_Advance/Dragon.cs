@@ -1,7 +1,8 @@
 namespace CAB201_Advance;
-public class Zombie : Piece
+
+public class Dragon : Piece
 {
-    public Zombie()
+    public Dragon()
     {
         return;
     }

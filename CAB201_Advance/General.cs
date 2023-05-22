@@ -1,7 +1,8 @@
 namespace CAB201_Advance;
-public class Zombie : Piece
+
+public class General
 {
-    public Zombie()
+    public General()
     {
         return;
     }
