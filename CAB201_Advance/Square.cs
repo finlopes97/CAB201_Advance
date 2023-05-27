@@ -2,14 +2,10 @@ namespace CAB201_Advance;
 
 public class Square
 {
-    public Piece ThisPiece { get; set; }
-
+    public IPiece ThisPiece { get; set; }
     public char Symbol { get; set; }
-
     public int X { get; set; }
-
     public int Y { get; set; }
-
     public Square()
     {
         ThisPiece = null;
@@ -26,7 +22,7 @@ public class Square
         ThisPiece = PieceFactory();
     }
 
-    private Piece PieceFactory()
+    private IPiece PieceFactory()
     {
         string side = char.IsUpper(Symbol) ? side = "white" : side = "black";
         switch (Symbol)

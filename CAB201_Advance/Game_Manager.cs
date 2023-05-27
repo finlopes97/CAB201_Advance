@@ -1,11 +1,10 @@
-using System.Diagnostics;
-using System.Drawing;
-
 namespace CAB201_Advance;
 
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 public class Game_Manager
 {
@@ -127,18 +126,52 @@ public class Game_Manager
             Console.WriteLine();
         }
     }
+    
+    private static object lockObj = new object();
+    private ConcurrentDictionary<string, int[,]> moves = new ConcurrentDictionary<string, int[,]>();
 
     public void Play()
     {
+        Task[] tasks = new Task[ROWS];
         for (int row = 0; row < ROWS; row++)
         {
-            for (int col = 0; col < COLS; col++)
+            int currentRow = row;
+
+            tasks[row] = Task.Run(() =>
             {
-                // Implement later, use multi-threading to read every board position and hold onto a list of potential moves
-                // for each piece. Use logic to determine the best move and then write to the output file. For instance,
-                // if the current Side is black, and the method finds a white Dragon that can put the black General in check in the 
-                // next move, then move the black General to safety.
+                ProcessRow(currentRow);
+            });
+
+        }
+        Task.WaitAll(tasks);
+        
+        Console.WriteLine("All tasks completed.");
+    }
+    
+    private void ProcessRow(int row)
+    {
+        for (int col = 0; col < COLS; col++)
+        {
+            char sym = board[row, col].Symbol;
+            if (sym != '.' && sym != '#')
+            {
+                IPiece piece = board[row, col].ThisPiece;
+                string key = $"{piece.GetSide()}_{piece.GetType().Name}_{row}{col}";
+                int[,] moveRange = piece.GetMoveRange();
+
+                lock (lockObj)
+                {
+                    Console.WriteLine($"Adding {key} to dictionary.");
+                    moves.TryAdd(key, moveRange);
+                }
             }
         }
     }
 }
+
+// {
+// Implement later, use multi-threading to read every board position and hold onto a list of potential moves
+// for each piece. Use logic to determine the best move and then write to the output file. For instance,
+// if the current Side is black, and the method finds a white Dragon that can put the black General in check in the 
+// next move, then move the black General to safety.
+// }

@@ -1,6 +1,6 @@
 namespace CAB201_Advance;
 
-public class General : Piece
+public class General : IPiece
 {
     private string Side { get; set; }
     private int Direction { get; set; }
@@ -19,5 +19,29 @@ public class General : Piece
         AbilityRange = new int[,]
         {
         };
+    }
+    public void Move()
+    {
+        
+    }
+    public void Capture()
+    {
+        
+    }
+    public bool IsMoveLegal()
+    {
+        return true;
+    }
+    public int[,] GetMoveRange()
+    {
+        return MoveRange;
+    }
+    public int[,] GetAbilityRange()
+    {
+        return AbilityRange;
+    }
+    public string GetSide()
+    {
+        return Side;
     }
 }

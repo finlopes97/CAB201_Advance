@@ -1,11 +1,11 @@
 namespace CAB201_Advance;
-public class Zombie : Piece
+public class Zombie : IPiece
 {
-    private string Side { get; set; }
+    private string Side { get; }
     private int Direction { get; set; }
-    public int ScoreValue { get; set; }
-    public int[,] MoveRange { get; set; }
-    public int[,] AbilityRange { get; set; }
+    public int ScoreValue { get; }
+    public int[,] MoveRange { get; }
+    public int[,] AbilityRange { get; }
     public Zombie(string side)
     {
         Side = side;
@@ -24,24 +24,32 @@ public class Zombie : Piece
             { 2 * Direction, -2 } // Forward 2 squares, left 2 square
         };
     }
-
     public void Move()
     {
         
     }
-
     public void Capture()
     {
         
     }
-
     public void Leap()
     {
         
     }
-
     public bool IsMoveLegal()
     {
         return true;
+    }
+    public int[,] GetMoveRange()
+    {
+        return MoveRange;
+    }
+    public int[,] GetAbilityRange()
+    {
+        return AbilityRange;
+    }
+    public string GetSide()
+    {
+        return Side;
     }
 }
