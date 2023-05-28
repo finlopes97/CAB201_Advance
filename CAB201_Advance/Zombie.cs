@@ -4,8 +4,8 @@ public class Zombie : IPiece
     private string Side { get; }
     private int Direction { get; set; }
     public int ScoreValue { get; }
-    public int[,] MoveRange { get; }
-    public int[,] AbilityRange { get; }
+    private int[,] MoveRange { get; }
+    private int[,] AbilityRange { get; }
     public Zombie(string side)
     {
         Side = side;
@@ -32,21 +32,13 @@ public class Zombie : IPiece
     {
         
     }
-    public void Leap()
-    {
-        
-    }
     public bool IsMoveLegal()
     {
         return true;
     }
-    public int[,] GetMoveRange()
+    public int[,] GetMoves()
     {
         return MoveRange;
-    }
-    public int[,] GetAbilityRange()
-    {
-        return AbilityRange;
     }
     public string GetSide()
     {

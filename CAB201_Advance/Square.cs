@@ -2,24 +2,14 @@ namespace CAB201_Advance;
 
 public class Square
 {
-    public IPiece ThisPiece { get; set; }
+    public IPiece? ThisPiece { get; set; }
     public char Symbol { get; set; }
-    public int X { get; set; }
-    public int Y { get; set; }
-    public Square()
-    {
-        ThisPiece = null;
-        Symbol = '.';
-        X = 0;
-        Y = 0;
-    }
-
-    public void UpdateSquareInfo(char _symbol, int _x, int _y)
+    public int[] Position { get; set; }
+    public Square(char _symbol, int[] _position)
     {
         Symbol = _symbol;
-        X = _x;
-        Y = _y;
-        ThisPiece = PieceFactory();
+        Position = _position;
+        ThisPiece = _symbol is '.' or '#' ? null : PieceFactory();
     }
 
     private IPiece PieceFactory()

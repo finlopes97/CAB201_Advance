@@ -32,14 +32,11 @@ public class Builder : IPiece
     {
         return true;
     }
-    public int[,] GetMoveRange()
+    public int[,] GetMoves()
     {
         return MoveRange;
     }
-    public int[,] GetAbilityRange()
-    {
-        return AbilityRange;
-    }
+
     public string GetSide()
     {
         return Side;
