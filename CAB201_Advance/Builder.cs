@@ -20,18 +20,12 @@ public class Builder : IPiece
         {
         };
     }
-    public void Move()
+
+    public void IsMoveValid(Square destination, int x, int y)
     {
-        
+        throw new System.NotImplementedException();
     }
-    public void Capture()
-    {
-        
-    }
-    public bool IsMoveLegal()
-    {
-        return true;
-    }
+
     public int[,] GetMoves()
     {
         return MoveRange;

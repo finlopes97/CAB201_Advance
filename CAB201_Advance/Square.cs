@@ -17,9 +17,10 @@ public class Square
         string side = char.IsUpper(Symbol) ? side = "white" : side = "black";
         switch (Symbol)
         {
-            case '.' or '#':
-                // Implement new function to handle non-piece squares '.' and '#'.
+            case '.':
                 return null;
+            case '#':
+                return new Wall();
             case 'z' or 'Z':
                 return new Zombie(side);
             case 'b' or 'B':

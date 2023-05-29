@@ -2,9 +2,7 @@ namespace CAB201_Advance;
 
 public interface IPiece
 {
-    public void Move();
-    public void Capture();
-    public bool IsMoveLegal();
+    public void IsMoveValid(Square destination, int x, int y);
     public int[,] GetMoves();
     public string GetSide();
 }

@@ -24,21 +24,33 @@ public class Zombie : IPiece
             { 2 * Direction, -2 } // Forward 2 squares, left 2 square
         };
     }
-    public void Move()
+    
+    public void IsMoveValid(Square destination, int x, int y)
     {
-        
+        int[] pos = new int[] { x, y }; 
+        throw new System.NotImplementedException();
     }
-    public void Capture()
-    {
-        
-    }
-    public bool IsMoveLegal()
-    {
-        return true;
-    }
+
     public int[,] GetMoves()
     {
-        return MoveRange;
+        List<int[]> moveList = new List<int[]>();
+        for (int i = 0; i < MoveRange.GetLength(0); i++)
+        {
+            moveList.Add( new int[] { MoveRange[i, 0], MoveRange[i, 1] } );
+        }
+        for (int i = 0; i < AbilityRange.GetLength(0); i++)
+        {
+            moveList.Add( new int[] { AbilityRange[i, 0], AbilityRange[i, 1] } );
+        }
+
+        int[,] moves = new int[moveList.Count, 2];
+        for (int i = 0; i < moveList.Count; i++)
+        {
+            moves[i, 0] = moveList[i][0];
+            moves[i, 1] = moveList[i][1];
+        }
+
+        return moves;
     }
     public string GetSide()
     {

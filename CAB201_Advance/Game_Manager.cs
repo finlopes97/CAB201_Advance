@@ -59,7 +59,7 @@ public class Game_Manager
     private const int COLS = 9;
     
     private Square[,] board = new Square[ROWS, COLS];
-    private Dictionary<string, int[,]> moves = new ();
+    private Dictionary<string, IPiece> moves = new ();
 
     public void SetupBoard()
     {
@@ -106,9 +106,8 @@ public class Game_Manager
 
             IPiece piece = board[row, col].ThisPiece;
             string key = $"{piece.GetSide()}_{piece.GetType().Name}_{row}{col}";
-            int[,] moveRange = piece.GetMoves();
 
-            moves.TryAdd(key, moveRange);
+            moves.TryAdd(key, piece);
         }
     }
 
@@ -116,53 +115,61 @@ public class Game_Manager
     {
         // To do, delegate this to the appropriate sub classes
         // This is just a test to see if the moves are being generated correctly
-        foreach (KeyValuePair<string, int[,]> kvp in moves)
+        foreach (KeyValuePair<string, IPiece> kvp in moves)
         {
             string key = kvp.Key;
-            int[,] moveRange = kvp.Value;
+            IPiece currentPiece = kvp.Value;
+            int[,] moveRange = currentPiece.GetMoves();
             
-            string[] splitKey = key.Split('_');
-            string side = splitKey[0];
-            string pieceType = splitKey[1];
-            int row = int.Parse(splitKey[2].Substring(0, 1));
-            int col = int.Parse(splitKey[2].Substring(1, 1));
+            LockSmith(key, out string side, out string pieceType, out int row, out int col);
     
             for (int i = 0; i < moveRange.GetLength(0); i++)
             {
                 int moveRow = row + moveRange[i, 0];
                 int moveCol = col + moveRange[i, 1];
 
-                if (!Debug_IsValidMove(moveRow, moveCol)) continue;
+                if (!IsMoveLegal(moveRow, moveCol)) continue;
                 Square destination = board[moveRow, moveCol];
+                
+                currentPiece.IsMoveValid(destination, row, col);
     
-                if (destination.ThisPiece != null && destination.ThisPiece.GetSide() != side)
-                {
-                    Console.WriteLine($"The {side} {pieceType} at {row}, {col} can move " +
-                                      $"to take the {destination.ThisPiece.GetSide()} {destination.ThisPiece.GetType().Name} at {moveRow}, {moveCol}.");
-                    
-                }
+                // if (destination.ThisPiece != null && destination.ThisPiece.GetSide() != side)
+                // {
+                //     Console.WriteLine($"The {side} {pieceType} at {row}, {col} can move " +
+                //                       $"to take the {destination.ThisPiece.GetSide()} {destination.ThisPiece.GetType().Name} at {moveRow}, {moveCol}.");
+                //     
+                // }
             }
         }
     }
-    
-    public void DebugBoard()
+
+    private static void LockSmith(string key, out string side, out string pieceType, out int row, out int col)
     {
-        for (int row = 0; row < ROWS; row++)
-        {
-            for (int col = 0; col < COLS; col++)
-            {
-                Console.Write(board[row, col].Symbol);
-            }
-            Console.WriteLine();
-        }
+        string[] splitKey = key.Split('_');
+        side = splitKey[0]; // white or black
+        pieceType = splitKey[1]; // name of piece (e.g. zombie)
+        row = int.Parse(splitKey[2].Substring(0, 1)); // row number
+        col = int.Parse(splitKey[2].Substring(1, 1)); // col number
     }
-        
-    private bool Debug_IsValidMove(int row, int col)
+
+    private static bool IsMoveLegal(int row, int col)
     {
         return row >= 0 && row < ROWS && col >= 0 && col < COLS;
     }
-}
     
+    public void DebugBoard()
+        {
+            for (int row = 0; row < ROWS; row++)
+            {
+                for (int col = 0; col < COLS; col++)
+                {
+                    Console.Write(board[row, col].Symbol);
+                }
+                Console.WriteLine();
+            }
+        }
+}
+
     // Old method below, used multi-threading. Functional but realised I could
     // merge code into the board setup method and avoid re-reading the board
     
